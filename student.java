@@ -2,10 +2,10 @@ package university;
 import java.time.LocalDate;
 
 public class Student {
-    private String studentId;
+    private final String studentId;
     private String name;
     private double gpa;
-    private int enrollment;
+    private final int enrollment;
     private int currentYear = LocalDate.now().getYear();
 
     public Student(String studentId, String name, double gpa, int enrollment) {
