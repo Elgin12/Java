@@ -1,7 +1,7 @@
 package university;
 
 public class Professor {
-    private String employeeId;
+    private final String employeeId;
     private String name;
     private String specialization;
     private int yearsOfExperience;
