@@ -1,18 +1,23 @@
 package university;
-
-public class Professor {
+public class professor {
     private final String employeeId;
     private String name;
-    private String specialization;
+    private String specialisation;
     private int yearsOfExperience;
 
-    public Professor(String employeeId, String name, String specialization, int yearsOfExperience) {
+    public professor(String employeeId, String name, String specialisation, int yearsOfExperience) {
+        if (employeeId == null || employeeId.isBlank()) {
+            throw new IllegalArgumentException("Employee ID cannot be blank");
+        }
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be blank");
+        }
+        if (yearsOfExperience < 0) {
+            throw new IllegalArgumentException("Years of experience cannot be negative");
+        }
         this.employeeId = employeeId;
         this.name = name;
-        this.specialization = specialization;
-        if (yearsOfExperience < 0 || yearsOfExperience > 50) {
-            throw new IllegalArgumentException("Invalid years of experience. Must be between 0 and 50.");
-        }
+        this.specialisation = specialisation;
         this.yearsOfExperience = yearsOfExperience;
     }
 
@@ -24,35 +29,50 @@ public class Professor {
         return name;
     }
 
-    public String getSpecialization() {
-        return specialization;
+    public void setName(String name) {
+        if (name == null || name.isBlank()) {
+            throw new IllegalArgumentException("Name cannot be blank");
+        }
+        this.name = name;
+    }
+
+    public String getSpecialisation() {
+        return specialisation;
+    }
+
+    public void setSpecialisation(String specialisation) {
+        this.specialisation = specialisation;
     }
 
     public int getYearsOfExperience() {
         return yearsOfExperience;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void completeAnotherYear() {
+        this.yearsOfExperience++;
     }
 
-    public void setSpecialization(String specialization) {
-        this.specialization = specialization;
+    public boolean isExperienced() {
+        return this.yearsOfExperience > 5;
     }
 
-    public void setYearsOfExperience(int yearsOfExperience) {
-        if (yearsOfExperience >= 0 && yearsOfExperience <= 50) {
-            this.yearsOfExperience = yearsOfExperience;
+    public String academicTitle() {
+        if (yearsOfExperience <= 5) {
+            return "Assistant Professor";
+        } else if (yearsOfExperience <= 10) {
+            return "Associate Professor";
         } else {
-            System.out.println("Invalid years of experience");
+            return "Professor";
         }
     }
 
     @Override
     public String toString() {
-        return "EmployeeId: " + employeeId + 
-               "\nName: " + name + 
-               "\nSpecialization: " + specialization + 
-               "\nYears of Experience: " + yearsOfExperience;
+        return "Professor{" +
+                "employeeId='" + employeeId + '\'' +
+                ", name='" + name + '\'' +
+                ", specialisation='" + specialisation + '\'' +
+                ", yearsOfExperience=" + yearsOfExperience +
+                '}';
     }
 }
